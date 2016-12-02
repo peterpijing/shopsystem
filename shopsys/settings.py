@@ -1,3 +1,4 @@
+#coding=utf-8
 """
 Django settings for shopsys project.
 
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog'
+    'catalog',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#添加session
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'shopsys.urls'
@@ -64,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+
             ],
         },
     },
@@ -107,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -119,4 +125,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+#静态资源设置
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+                    os.path.join(BASE_DIR, "static"),
+                    )
+
+
+#用户上传文件位置
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+# 站点设置
+SITE_NAME = '小白购'
+META_KEYWORDS = '小白购, 特价男装, 精品女鞋, 计算机图书, 双十一特惠'
+META_DESCRIPTION = '''小白购 - 成都最大、最安全的网上交易平台，提供各类服饰、
+    美容、家居、数码、话费/点卡充值… 2亿优质特价商品，同时提供担保交易(先收货
+    后付款)、先行赔付、假一赔三、七天无理由退换货、数码免费维修等安全交易保障
+    服务，让你全面安心享受网上购物乐趣！'''
