@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>添加出版社信息:</title>
+</head>
+<body>
+    <form action="{% url 'catalog:add_publisher' %}" method="post">
+        {% csrf_token %}
+        {{ publisher_form.as_p }}
+        <input type="submit" value="提交"><br>
+    </form>
+</body>
+</html>
